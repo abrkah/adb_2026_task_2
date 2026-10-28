@@ -43,6 +43,6 @@ public class ConnectionFactory {
 
         // Connect using your local PostgreSQL role.
         // If authentication fails, update the credentials appropriately.
-        return DriverManager.getConnection(url, "ab", "");
+        return DriverManager.getConnection(url, "ab", "ab");
     }
 }
