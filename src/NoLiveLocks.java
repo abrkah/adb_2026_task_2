@@ -159,6 +159,28 @@ public class NoLiveLocks {
         );
     }
 
+    /**
+     * Opens a connection, waiting while PostgreSQL has no free connection
+     * slot (SQLSTATE 53300, "too many clients"). Without this, runs with
+     * more threads than max_connections would lose tasks.
+     */
+    static Connection openConnectionWithRetry() throws SQLException {
+        while (true) {
+            try {
+                return ConnectionFactory.getDefaultParameterConnection(
+                    ConnectionFactory.POSTGRESQL);
+            } catch (SQLException e) {
+                if (!"53300".equals(e.getSQLState())) throw e;
+                try {
+                    Thread.sleep(50 + new Random().nextInt(101));
+                } catch (InterruptedException interrupted) {
+                    Thread.currentThread().interrupt();
+                    throw e;
+                }
+            }
+        }
+    }
+
     public class Blocker implements Runnable {
         final int task;
         final double[] start_range;
@@ -180,9 +202,7 @@ public class NoLiveLocks {
 
         @Override
         public void run() {
-            try (Connection con =
-                     ConnectionFactory.getDefaultParameterConnection(
-                         ConnectionFactory.POSTGRESQL)) {
+            try (Connection con = openConnectionWithRetry()) {
 
                 con.setAutoCommit(false);
                 con.setTransactionIsolation(
