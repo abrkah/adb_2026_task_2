@@ -7,8 +7,6 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * NoLiveLocks.java
@@ -23,10 +21,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 2. Restart: the UPDATE predicates are re-evaluated under READ COMMITTED,
  *    so rare deadlocks (SQLSTATE 40P01) remain possible. These are retried.
  * 3. Starvation guard: after MAX_OPTIMISTIC_ATTEMPTS aborts, a task runs
- *    exclusively (write side of a FAIR read/write lock; all other tasks hold
- *    the read side). No concurrent transaction exists then, so it cannot be
- *    a deadlock victim and is guaranteed to commit. Fairness of the lock
- *    prevents the exclusive waiter itself from starving.
+ *    exclusively: it takes a PostgreSQL advisory lock exclusively, while all
+ *    other transactions hold it shared. No concurrent transaction exists
+ *    then, so it cannot be a deadlock victim and is guaranteed to commit.
+ *    PostgreSQL queues lock requests, so the exclusive waiter is not
+ *    overtaken forever. As the gate lives in the database, it holds across
+ *    JVMs, too (every client must use it).
  */
 public class NoLiveLocks {
 
@@ -41,12 +41,16 @@ public class NoLiveLocks {
 
     public static int num_threads = 4;
 
-    // Aborts tolerated before a task escalates to exclusive execution.
-    private static final int MAX_OPTIMISTIC_ATTEMPTS = 5;
+    // Aborts tolerated before a task escalates to exclusive execution
+    // (override with -DmaxOptimistic=n, e.g. to test the escalation path).
+    private static final int MAX_OPTIMISTIC_ATTEMPTS =
+        Integer.getInteger("maxOptimistic", 5);
 
-    // Fair: waiting writers (escalated tasks) are not overtaken forever.
-    private static final ReentrantReadWriteLock GATE =
-        new ReentrantReadWriteLock(true);
+    // Key of the PostgreSQL advisory lock used as gate. Normal transactions
+    // take it shared, escalated ones exclusive. PostgreSQL queues lock
+    // requests, so a waiting exclusive request is not overtaken by new
+    // shared ones. Being a database lock, it also works across JVMs.
+    private static final long GATE_KEY = 424242L;
 
     final AtomicInteger deadlocks = new AtomicInteger(0);
     final AtomicInteger escalations = new AtomicInteger(0);
@@ -110,8 +114,13 @@ public class NoLiveLocks {
     }
 
     public static void main(String[] args) {
+        // Optional: <tasks> <queriesPerTask> <threads>
+        if (args.length > 0) num_taks = Integer.parseInt(args[0]);
+        if (args.length > 1) num_queries_per_task = Integer.parseInt(args[1]);
+        if (args.length > 2) num_threads = Integer.parseInt(args[2]);
         NoLiveLocks program = new NoLiveLocks();
-        program.cerateDB();
+        // -DskipSetup=true: join an existing table (second client process).
+        if (System.getProperty("skipSetup") == null) program.cerateDB();
 
         ArrayList<Blocker> tasks = new ArrayList<>(num_taks);
         for (int task = 0; task < num_taks; task++) {
@@ -182,15 +191,12 @@ public class NoLiveLocks {
 
                 for (int attempt = 1; ; attempt++) {
                     boolean exclusive = attempt > MAX_OPTIMISTIC_ATTEMPTS;
-                    Lock gate = exclusive
-                        ? GATE.writeLock() : GATE.readLock();
                     if (exclusive && attempt == MAX_OPTIMISTIC_ATTEMPTS + 1) {
                         escalations.incrementAndGet();
                     }
 
-                    gate.lock();
                     try {
-                        runTransaction(con);
+                        runTransaction(con, exclusive);
                         int finished = tasks_finished.incrementAndGet();
                         System.out.println(
                             "Done task " + task + " after " + attempt +
@@ -217,8 +223,6 @@ public class NoLiveLocks {
                             return;
                         }
                         deadlocks.incrementAndGet();
-                    } finally {
-                        gate.unlock();
                     }
 
                     // Backoff outside the gate so others can proceed.
@@ -239,8 +243,19 @@ public class NoLiveLocks {
         }
 
         /** One transaction attempt: ordered row locks, updates, commit. */
-        private void runTransaction(Connection con) throws SQLException {
+        private void runTransaction(Connection con, boolean exclusive)
+                throws SQLException {
+            // 0. Gate: transaction-level advisory lock, released at
+            // commit/rollback. Exclusive means no other transaction runs.
+            try (PreparedStatement ps = con.prepareStatement(exclusive
+                    ? "SELECT pg_advisory_xact_lock(?)"
+                    : "SELECT pg_advisory_xact_lock_shared(?)")) {
+                ps.setLong(1, GATE_KEY);
+                ps.execute();
+            }
+
             // 1. Lock every row of all ranges in ascending primary-key order.
+            if (num_queries_per_task > 0) {
             StringBuilder lockSql = new StringBuilder(
                 "SELECT data_id FROM blocking_data WHERE ");
             for (int q = 0; q < num_queries_per_task; q++) {
@@ -257,6 +272,7 @@ public class NoLiveLocks {
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) { /* drain: locks are taken */ }
                 }
+            }
             }
 
             // 2. The original updates, now on already locked rows.

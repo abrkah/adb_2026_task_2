@@ -151,6 +151,10 @@ public class RestartBlocking {
      * and measures workload execution time.
      */
     public static void main(String[] args) {
+        // Optional: <tasks> <queriesPerTask> <threads>
+        if (args.length > 0) num_taks = Integer.parseInt(args[0]);
+        if (args.length > 1) num_queries_per_task = Integer.parseInt(args[1]);
+        if (args.length > 2) num_threads = Integer.parseInt(args[2]);
 
         // Create the main Blocking object.
         RestartBlocking b = new RestartBlocking();

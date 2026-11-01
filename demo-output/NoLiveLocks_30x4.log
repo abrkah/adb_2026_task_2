@@ -1,0 +1,34 @@
+Executing DROP TABLE IF EXISTS blocking_data;
+Executing CREATE TABLE blocking_data (data_id INTEGER PRIMARY KEY, data_value FLOAT, modified_by INTEGER);
+Inserted rows: 50000
+Done task 0 after 1 attempt(s). I am finisher number 1
+Done task 3 after 1 attempt(s). I am finisher number 2
+Done task 2 after 1 attempt(s). I am finisher number 3
+Done task 5 after 1 attempt(s). I am finisher number 4
+Done task 1 after 1 attempt(s). I am finisher number 5
+Done task 6 after 1 attempt(s). I am finisher number 6
+Done task 4 after 1 attempt(s). I am finisher number 7
+Done task 9 after 1 attempt(s). I am finisher number 8
+Done task 11 after 1 attempt(s). I am finisher number 9
+Done task 12 after 1 attempt(s). I am finisher number 10
+Done task 13 after 1 attempt(s). I am finisher number 11
+Done task 14 after 1 attempt(s). I am finisher number 12
+Done task 7 after 1 attempt(s). I am finisher number 13
+Done task 15 after 1 attempt(s). I am finisher number 14
+Done task 17 after 1 attempt(s). I am finisher number 15
+Done task 18 after 1 attempt(s). I am finisher number 16
+Done task 16 after 1 attempt(s). I am finisher number 17
+Done task 8 after 2 attempt(s). I am finisher number 18
+Done task 21 after 1 attempt(s). I am finisher number 19
+Done task 22 after 1 attempt(s). I am finisher number 20
+Done task 10 after 2 attempt(s). I am finisher number 21
+Done task 23 after 1 attempt(s). I am finisher number 22
+Done task 24 after 1 attempt(s). I am finisher number 23
+Done task 25 after 1 attempt(s). I am finisher number 24
+Done task 26 after 1 attempt(s). I am finisher number 25
+Done task 19 after 1 attempt(s). I am finisher number 26
+Done task 27 after 1 attempt(s). I am finisher number 27
+Done task 28 after 1 attempt(s). I am finisher number 28
+Done task 20 after 1 attempt(s). I am finisher number 29
+Done task 29 after 1 attempt(s). I am finisher number 30
+[DONE] Task execution after roughly 3636 ms finished: 30 of 30 (deadlocks retried: 2, escalated to exclusive: 0)

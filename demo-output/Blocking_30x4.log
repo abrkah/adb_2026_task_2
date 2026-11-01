@@ -1,0 +1,73 @@
+Executing DROP TABLE IF EXISTS blocking_data;
+Executing CREATE TABLE blocking_data (data_id INTEGER PRIMARY KEY, data_value FLOAT, modified_by INTEGER);
+Inserted rows: 50000
+Done task 3. I am finisher number 1
+Task 0 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98586 waits for ShareLock on transaction 739; blocked by process 98584.
+Process 98584 waits for ShareLock on transaction 738; blocked by process 98585.
+Process 98585 waits for ExclusiveLock on tuple (318,75) of relation 16386 of database 16385; blocked by process 98586.
+  Hint: See server log for query details.
+  Where: while locking tuple (318,75) in relation "blocking_data"
+Task 1 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98585 waits for ExclusiveLock on tuple (318,75) of relation 16386 of database 16385; blocked by process 98588.
+Process 98588 waits for ShareLock on transaction 739; blocked by process 98584.
+Process 98584 waits for ShareLock on transaction 738; blocked by process 98585.
+  Hint: See server log for query details.
+Done task 2. I am finisher number 2
+Task 6 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98590 waits for ShareLock on transaction 741; blocked by process 98588.
+Process 98588 waits for ShareLock on transaction 744; blocked by process 98591.
+Process 98591 waits for ExclusiveLock on tuple (522,24) of relation 16386 of database 16385; blocked by process 98590.
+  Hint: See server log for query details.
+  Where: while locking tuple (522,24) in relation "blocking_data"
+Task 4 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98588 waits for ShareLock on transaction 744; blocked by process 98591.
+Process 98591 waits for ShareLock on transaction 741; blocked by process 98588.
+  Hint: See server log for query details.
+  Where: while updating tuple (469,8) in relation "blocking_data"
+Task 8 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98663 waits for ShareLock on transaction 744; blocked by process 98591.
+Process 98591 waits for ShareLock on transaction 742; blocked by process 98589.
+Process 98589 waits for ExclusiveLock on tuple (469,8) of relation 16386 of database 16385; blocked by process 98663.
+  Hint: See server log for query details.
+  Where: while updating tuple (469,8) in relation "blocking_data"
+Done task 10. I am finisher number 3
+Task 5 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98589 waits for ShareLock on transaction 744; blocked by process 98591.
+Process 98591 waits for ShareLock on transaction 742; blocked by process 98589.
+  Hint: See server log for query details.
+  Where: while updating tuple (469,8) in relation "blocking_data"
+Done task 7. I am finisher number 4
+Done task 9. I am finisher number 5
+Done task 11. I am finisher number 6
+Task 13 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98679 waits for ShareLock on transaction 749; blocked by process 98678.
+Process 98678 waits for ShareLock on transaction 750; blocked by process 98679.
+  Hint: See server log for query details.
+  Where: while locking tuple (2,172) in relation "blocking_data"
+Task 14 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98680 waits for ShareLock on transaction 749; blocked by process 98678.
+Process 98678 waits for ShareLock on transaction 751; blocked by process 98680.
+  Hint: See server log for query details.
+  Where: while updating tuple (0,158) in relation "blocking_data"
+Done task 12. I am finisher number 7
+Done task 15. I am finisher number 8
+Task 18 failed (SQLSTATE 40P01): ERROR: deadlock detected
+  Detail: Process 98705 waits for ExclusiveLock on tuple (2,190) of relation 16386 of database 16385; blocked by process 98704.
+Process 98704 waits for ShareLock on transaction 753; blocked by process 98682.
+Process 98682 waits for ShareLock on transaction 755; blocked by process 98705.
+  Hint: See server log for query details.
+Done task 20. I am finisher number 9
+Done task 16. I am finisher number 10
+Done task 17. I am finisher number 11
+Done task 19. I am finisher number 12
+Done task 23. I am finisher number 13
+Done task 25. I am finisher number 14
+Done task 26. I am finisher number 15
+Done task 21. I am finisher number 16
+Done task 24. I am finisher number 17
+Done task 22. I am finisher number 18
+Done task 28. I am finisher number 19
+Done task 27. I am finisher number 20
+Done task 29. I am finisher number 21
+[DONE] Task execution after roughly 9118 ms finished: 21 of 30
