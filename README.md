@@ -20,8 +20,8 @@ Concurrent `Blocker` transactions on PostgreSQL: deadlocks, client-side restart,
 3. Compile and run:
    ```
    javac -d out src/*.java
-   java -cp out:lib/postgresql-42.2.18.jar RestartBlocking [tasks] [queriesPerTask] [threads]
-   java -cp out:lib/postgresql-42.2.18.jar NoLiveLocks     [tasks] [queriesPerTask] [threads]
+   java -cp out:lib/postgresql.jar RestartBlocking [tasks] [queriesPerTask] [threads]
+   java -cp out:lib/postgresql.jar NoLiveLocks     [tasks] [queriesPerTask] [threads]
    ```
    Defaults: 30 tasks, 3 queries per task, 4 threads. Isolation level is READ COMMITTED.
 

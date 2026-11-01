@@ -49,6 +49,9 @@ public class RestartBlocking {
     // Thread-safe counter of tasks that committed successfully.
     AtomicInteger tasks_finished;
 
+    // Thread-safe counter of deadlock aborts that were rolled back and retried.
+    final AtomicInteger deadlocks = new AtomicInteger(0);
+
     /**
      * Constructor.
      * Initializes the counter of successfully completed tasks.
@@ -203,7 +206,8 @@ public class RestartBlocking {
         System.out.println(
             "[DONE] Task execution after roughly " +
             (stop - start) + " ms finished: " +
-            b.tasks_finished.get() + " of " + num_taks
+            b.tasks_finished.get() + " of " + num_taks +
+            " (deadlocks retried: " + b.deadlocks.get() + ")"
         );
     }
 
@@ -301,6 +305,7 @@ public class RestartBlocking {
                             return;
                         }
 
+                        deadlocks.incrementAndGet();
                         System.out.println(
                             "Deadlock for task " + task +
                             " on attempt " + attempt +
