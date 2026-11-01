@@ -7,25 +7,26 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * NoLiveLocks.java
  *
- * Fair-lock strategy for the PostgreSQL deadlock assignment.
+ * Deadlock- and starvation-free execution of the Blocker tasks.
  *
- * Configuration:
- * - 30 tasks
- * - 3 UPDATE statements per task
- * - 50,000 database rows
- * - 4 worker threads
- * - READ_COMMITTED isolation
- *
- * FAIR_LOCK allows only one task at a time to execute its transaction.
- * This prevents circular waits between tasks inside this Java process.
- *
- * Trade-off: database transactions are serialized, so concurrency is reduced.
- * The lock does not coordinate with other applications or database clients.
+ * Concept (three layers):
+ * 1. Ordered locking: before its UPDATEs, a transaction locks all rows it
+ *    will touch with one "SELECT ... ORDER BY data_id FOR UPDATE". Everybody
+ *    acquires row locks in the same global order, so cycles (deadlocks)
+ *    almost never form, while tasks still run concurrently.
+ * 2. Restart: the UPDATE predicates are re-evaluated under READ COMMITTED,
+ *    so rare deadlocks (SQLSTATE 40P01) remain possible. These are retried.
+ * 3. Starvation guard: after MAX_OPTIMISTIC_ATTEMPTS aborts, a task runs
+ *    exclusively (write side of a FAIR read/write lock; all other tasks hold
+ *    the read side). No concurrent transaction exists then, so it cannot be
+ *    a deadlock victim and is guaranteed to commit. Fairness of the lock
+ *    prevents the exclusive waiter itself from starving.
  */
 public class NoLiveLocks {
 
@@ -38,8 +39,17 @@ public class NoLiveLocks {
 
     AtomicInteger tasks_finished;
 
-    // true requests fair, approximately first-come-first-served lock acquisition.
-    private static final ReentrantLock FAIR_LOCK = new ReentrantLock(true);
+    public static int num_threads = 4;
+
+    // Aborts tolerated before a task escalates to exclusive execution.
+    private static final int MAX_OPTIMISTIC_ATTEMPTS = 5;
+
+    // Fair: waiting writers (escalated tasks) are not overtaken forever.
+    private static final ReentrantReadWriteLock GATE =
+        new ReentrantReadWriteLock(true);
+
+    final AtomicInteger deadlocks = new AtomicInteger(0);
+    final AtomicInteger escalations = new AtomicInteger(0);
 
     public NoLiveLocks() {
         tasks_finished = new AtomicInteger(0);
@@ -109,7 +119,7 @@ public class NoLiveLocks {
         }
 
         ThreadPoolExecutor executor =
-            (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
+            (ThreadPoolExecutor) Executors.newFixedThreadPool(num_threads);
 
         long start = System.currentTimeMillis();
 
@@ -134,7 +144,9 @@ public class NoLiveLocks {
         System.out.println(
             "[DONE] Task execution after roughly " +
             (stop - start) + " ms finished: " +
-            program.tasks_finished.get() + " of " + num_taks
+            program.tasks_finished.get() + " of " + num_taks +
+            " (deadlocks retried: " + program.deadlocks.get() +
+            ", escalated to exclusive: " + program.escalations.get() + ")"
         );
     }
 
@@ -159,16 +171,6 @@ public class NoLiveLocks {
 
         @Override
         public void run() {
-            // Fair lock serializes each task's entire transaction.
-            FAIR_LOCK.lock();
-            try {
-                executeTaskWithLock();
-            } finally {
-                FAIR_LOCK.unlock();
-            }
-        }
-
-        private void executeTaskWithLock() {
             try (Connection con =
                      ConnectionFactory.getDefaultParameterConnection(
                          ConnectionFactory.POSTGRESQL)) {
@@ -178,47 +180,55 @@ public class NoLiveLocks {
                     Connection.TRANSACTION_READ_COMMITTED
                 );
 
-                String sql =
-                    "UPDATE blocking_data " +
-                    "SET data_value = ?, modified_by = " + task +
-                    " WHERE data_value >= ? AND data_value <= ?;";
-
-                try {
-                    for (int q = 0; q < num_queries_per_task; q++) {
-                        try (PreparedStatement ps =
-                                 con.prepareStatement(
-                                     sql,
-                                     ResultSet.TYPE_SCROLL_SENSITIVE,
-                                     ResultSet.CONCUR_UPDATABLE)) {
-                            ps.setDouble(1, update_values[q]);
-                            ps.setDouble(2, start_range[q]);
-                            ps.setDouble(3, stop_range[q]);
-                            ps.executeUpdate();
-                        }
+                for (int attempt = 1; ; attempt++) {
+                    boolean exclusive = attempt > MAX_OPTIMISTIC_ATTEMPTS;
+                    Lock gate = exclusive
+                        ? GATE.writeLock() : GATE.readLock();
+                    if (exclusive && attempt == MAX_OPTIMISTIC_ATTEMPTS + 1) {
+                        escalations.incrementAndGet();
                     }
 
-                    con.commit();
-
-                    int finished = tasks_finished.incrementAndGet();
-                    System.out.println(
-                        "Done task " + task +
-                        ". I am finisher number " + finished
-                    );
-
-                } catch (SQLException e) {
+                    gate.lock();
                     try {
-                        con.rollback();
-                    } catch (SQLException rollbackError) {
-                        System.err.println(
-                            "Rollback failed for task " + task +
-                            ": " + rollbackError.getMessage()
+                        runTransaction(con);
+                        int finished = tasks_finished.incrementAndGet();
+                        System.out.println(
+                            "Done task " + task + " after " + attempt +
+                            " attempt(s). I am finisher number " + finished
                         );
+                        return;
+                    } catch (SQLException e) {
+                        try {
+                            con.rollback();
+                        } catch (SQLException rollbackError) {
+                            System.err.println(
+                                "Rollback failed for task " + task +
+                                ": " + rollbackError.getMessage()
+                            );
+                            return;
+                        }
+                        // 40P01 = deadlock detected; 40001 = serialization.
+                        if (!"40P01".equals(e.getSQLState())
+                                && !"40001".equals(e.getSQLState())) {
+                            System.err.println(
+                                "Task " + task + " failed (SQLSTATE " +
+                                e.getSQLState() + "): " + e.getMessage()
+                            );
+                            return;
+                        }
+                        deadlocks.incrementAndGet();
+                    } finally {
+                        gate.unlock();
                     }
 
-                    System.err.println(
-                        "Task " + task + " failed (SQLSTATE " +
-                        e.getSQLState() + "): " + e.getMessage()
-                    );
+                    // Backoff outside the gate so others can proceed.
+                    try {
+                        Thread.sleep(10L * Math.min(attempt, 20)
+                            + new Random().nextInt(31));
+                    } catch (InterruptedException interrupted) {
+                        Thread.currentThread().interrupt();
+                        return;
+                    }
                 }
 
             } catch (SQLException e) {
@@ -226,6 +236,44 @@ public class NoLiveLocks {
                     "Could not run task " + task + ": " + e.getMessage()
                 );
             }
+        }
+
+        /** One transaction attempt: ordered row locks, updates, commit. */
+        private void runTransaction(Connection con) throws SQLException {
+            // 1. Lock every row of all ranges in ascending primary-key order.
+            StringBuilder lockSql = new StringBuilder(
+                "SELECT data_id FROM blocking_data WHERE ");
+            for (int q = 0; q < num_queries_per_task; q++) {
+                if (q > 0) lockSql.append(" OR ");
+                lockSql.append("(data_value >= ? AND data_value <= ?)");
+            }
+            lockSql.append(" ORDER BY data_id FOR UPDATE");
+
+            try (PreparedStatement ps = con.prepareStatement(lockSql.toString())) {
+                for (int q = 0; q < num_queries_per_task; q++) {
+                    ps.setDouble(2 * q + 1, start_range[q]);
+                    ps.setDouble(2 * q + 2, stop_range[q]);
+                }
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) { /* drain: locks are taken */ }
+                }
+            }
+
+            // 2. The original updates, now on already locked rows.
+            String sql =
+                "UPDATE blocking_data " +
+                "SET data_value = ?, modified_by = " + task +
+                " WHERE data_value >= ? AND data_value <= ?;";
+            for (int q = 0; q < num_queries_per_task; q++) {
+                try (PreparedStatement ps = con.prepareStatement(sql)) {
+                    ps.setDouble(1, update_values[q]);
+                    ps.setDouble(2, start_range[q]);
+                    ps.setDouble(3, stop_range[q]);
+                    ps.executeUpdate();
+                }
+            }
+
+            con.commit();
         }
     }
 }

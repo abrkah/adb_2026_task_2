@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * - 30 tasks
  * - 3 UPDATE statements per task
  * - 50,000 database rows
- * - 4 concurrent worker threads
+ * - 4 concurrent worker threads (num_threads)
  * - READ_COMMITTED transaction isolation
  *
  * Each task uses its own database connection and executes all its
@@ -33,6 +33,9 @@ public class RestartBlocking {
 
     // Number of UPDATE statements executed by each task.
     public static int num_queries_per_task = 3;
+
+    // Number of concurrent worker threads.
+    public static int num_threads = 4;
 
     // Random generator used to create initial values and update ranges.
     Random rand = new Random(123456);
@@ -163,9 +166,8 @@ public class RestartBlocking {
             myTasks.add(b.new Blocker(task));
         }
 
-        // IMPORTANT: The assignment requires exactly four worker threads.
         ThreadPoolExecutor executor =
-            (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
+            (ThreadPoolExecutor) Executors.newFixedThreadPool(num_threads);
 
         // Start timing the task workload, excluding table initialization.
         long start = System.currentTimeMillis();
@@ -214,9 +216,6 @@ public class RestartBlocking {
         final double[] stop_range;
         final double[] update_values;
 
-        // A limit prevents a task from retrying forever.
-        private static final int MAX_ATTEMPTS = 100;
-
         public Blocker(int id) {
             this.task = id;
             this.start_range = new double[num_queries_per_task];
@@ -248,7 +247,7 @@ public class RestartBlocking {
                     "SET data_value = ?, modified_by = " + task +
                     " WHERE data_value >= ? AND data_value <= ?;";
 
-                for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+                for (int attempt = 1; ; attempt++) {
                     try {
                         // Run every UPDATE in the same transaction attempt.
                         for (int q = 0; q < num_queries_per_task; q++) {
@@ -298,15 +297,6 @@ public class RestartBlocking {
                             return;
                         }
 
-                        if (attempt == MAX_ATTEMPTS) {
-                            System.err.println(
-                                "Task " + task +
-                                " reached the retry limit (" +
-                                MAX_ATTEMPTS + ") after repeated deadlocks."
-                            );
-                            return;
-                        }
-
                         System.out.println(
                             "Deadlock for task " + task +
                             " on attempt " + attempt +
@@ -316,7 +306,8 @@ public class RestartBlocking {
                         // Randomized backoff helps reduce repeated collisions.
                         try {
                             Thread.sleep(
-                                20L * attempt + new Random().nextInt(51)
+                                20L * Math.min(attempt, 50) +
+                                new Random().nextInt(51)
                             );
                         } catch (InterruptedException interrupted) {
                             Thread.currentThread().interrupt();
