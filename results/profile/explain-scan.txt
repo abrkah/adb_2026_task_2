@@ -1,0 +1,50 @@
+== after 15s baseline run (not vacuumed)
+                                                      QUERY PLAN                                                       
+-----------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=1145.41..1145.42 rows=1 width=8) (actual time=16.611..16.612 rows=1 loops=1)
+   Buffers: shared hit=403
+   ->  Seq Scan on blocking_data  (cost=0.00..996.93 rows=59393 width=8) (actual time=0.007..8.315 rows=59393 loops=1)
+         Buffers: shared hit=403
+ Planning:
+   Buffers: shared hit=54
+ Planning Time: 0.355 ms
+ Execution Time: 16.695 ms
+(8 rows)
+
+                                                            QUERY PLAN                                                            
+----------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using blocking_data_pkey on blocking_data  (cost=0.29..8.31 rows=1 width=8) (actual time=0.015..0.015 rows=1 loops=1)
+   Index Cond: (data_id = 123)
+   Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=64
+ Planning Time: 0.919 ms
+ Execution Time: 0.072 ms
+(7 rows)
+
+VACUUM
+== after VACUUM
+                                                      QUERY PLAN                                                       
+-----------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=1145.41..1145.42 rows=1 width=8) (actual time=12.813..12.813 rows=1 loops=1)
+   Buffers: shared hit=403
+   ->  Seq Scan on blocking_data  (cost=0.00..996.93 rows=59393 width=8) (actual time=0.008..6.029 rows=59393 loops=1)
+         Buffers: shared hit=403
+ Planning:
+   Buffers: shared hit=54
+ Planning Time: 0.413 ms
+ Execution Time: 12.925 ms
+(8 rows)
+
+                                                      QUERY PLAN                                                       
+-----------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=1145.41..1145.42 rows=1 width=8) (actual time=11.307..11.308 rows=1 loops=1)
+   Buffers: shared hit=403
+   ->  Seq Scan on blocking_data  (cost=0.00..996.93 rows=59393 width=8) (actual time=0.008..5.584 rows=59393 loops=1)
+         Buffers: shared hit=403
+ Planning:
+   Buffers: shared hit=54
+ Planning Time: 0.523 ms
+ Execution Time: 11.461 ms
+(8 rows)
+

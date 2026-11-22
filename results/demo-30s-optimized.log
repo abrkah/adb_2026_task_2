@@ -1,0 +1,43 @@
+Removing 11056 tuples inserted by a previous run
+Loaded 50000 tuples
+Config: {preset=optimized, threads=24, count=0, duration=30, warmup=0, seed=42, out=buffered, stmtCache=true, batchWrites=true, autocommitSingle=true, pipeline=true, shareScans=true, scanLanes=2, syncCommit=off, fillfactor=100, avTune=false, gate=true, maxOptimistic=5, setup=true, print=true, label=demo-best}
+Before: pages=319 live=50000 dead=0 upd=0 hot_upd=0 autovacuums=0
+[  1s] committed   33633/s  total    33633  in-flight  24  deadlocks 0  escalations 0
+[  2s] committed   36431/s  total    70064  in-flight  24  deadlocks 0  escalations 0
+[  3s] committed   36677/s  total   106741  in-flight  24  deadlocks 0  escalations 0
+[  4s] committed   36359/s  total   143100  in-flight  24  deadlocks 0  escalations 0
+[  5s] committed   36258/s  total   179358  in-flight  24  deadlocks 0  escalations 0
+[  6s] committed   35475/s  total   214833  in-flight  24  deadlocks 0  escalations 0
+[  7s] committed   34990/s  total   249823  in-flight  24  deadlocks 0  escalations 0
+[  8s] committed   34595/s  total   284418  in-flight  24  deadlocks 0  escalations 0
+[  9s] committed   33569/s  total   317987  in-flight  24  deadlocks 0  escalations 0
+[ 10s] committed   33471/s  total   351458  in-flight  24  deadlocks 0  escalations 0
+[ 11s] committed   33083/s  total   384541  in-flight  24  deadlocks 0  escalations 0
+[ 12s] committed   32151/s  total   416692  in-flight  24  deadlocks 0  escalations 0
+[ 13s] committed   32048/s  total   448740  in-flight  24  deadlocks 0  escalations 0
+[ 14s] committed   31167/s  total   479907  in-flight  24  deadlocks 0  escalations 0
+[ 15s] committed   31325/s  total   511232  in-flight  24  deadlocks 0  escalations 0
+[ 16s] committed   30464/s  total   541696  in-flight  24  deadlocks 0  escalations 0
+[ 17s] committed   28849/s  total   570545  in-flight  24  deadlocks 0  escalations 0
+[ 18s] committed   28107/s  total   598652  in-flight  24  deadlocks 0  escalations 0
+[ 19s] committed   27718/s  total   626370  in-flight  24  deadlocks 0  escalations 0
+[ 20s] committed   27873/s  total   654243  in-flight  24  deadlocks 0  escalations 0
+[ 21s] committed   27093/s  total   681336  in-flight  24  deadlocks 0  escalations 0
+[ 22s] committed   25044/s  total   706380  in-flight  24  deadlocks 0  escalations 0
+[ 23s] committed   23576/s  total   729956  in-flight  24  deadlocks 0  escalations 0
+[ 24s] committed   24575/s  total   754531  in-flight  24  deadlocks 0  escalations 0
+[ 25s] committed   24146/s  total   778677  in-flight  24  deadlocks 0  escalations 0
+[ 26s] committed   24337/s  total   803014  in-flight  24  deadlocks 0  escalations 0
+[ 27s] committed   22508/s  total   825522  in-flight  24  deadlocks 0  escalations 0
+[ 28s] committed   23434/s  total   848956  in-flight  24  deadlocks 0  escalations 0
+[ 29s] committed   22274/s  total   871230  in-flight  24  deadlocks 0  escalations 0
+[ 30s] committed   22363/s  total   893593  in-flight  24  deadlocks 0  escalations 0
+==================================================================
+RESULT demo-best: 859952 committed in 29.00 s  ->  29651 tx/s  (threads=24)
+  READ     515993  (60.0%)  mean latency 0.222 ms
+  INSERT    85852  (10.0%)  mean latency 0.218 ms
+  SCAN      86045  (10.0%)  mean latency 6.060 ms
+  WRITE    172062  (20.0%)  mean latency 0.238 ms
+  deadlocks retried 0, other retries 0, escalations 0, worst attempts 1
+  shared scans: 89460 SCAN transactions served by 13094 sum() executions
+After:  pages=966 live=139307 dead=10060 upd=536271 hot_upd=526250 autovacuums=0

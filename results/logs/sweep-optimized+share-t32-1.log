@@ -1,0 +1,23 @@
+Removing 12215 tuples inserted by a previous run
+Loaded 50000 tuples
+Config: {preset=optimized, threads=32, count=0, duration=10, warmup=2, seed=42, out=buffered, stmtCache=true, batchWrites=true, autocommitSingle=true, pipeline=true, shareScans=true, scanLanes=2, syncCommit=off, fillfactor=100, avTune=false, gate=true, maxOptimistic=5, setup=true, print=true, label=optimized+share}
+Before: pages=319 live=50000 dead=0 upd=0 hot_upd=0 autovacuums=0
+[  1s] committed   30240/s  total    30240  in-flight  32  deadlocks 0  escalations 0
+[  2s] committed   37418/s  total    67658  in-flight  33  deadlocks 0  escalations 0
+[  3s] committed   37753/s  total   105411  in-flight  32  deadlocks 0  escalations 0
+[  4s] committed   37903/s  total   143314  in-flight  32  deadlocks 0  escalations 0
+[  5s] committed   37559/s  total   180873  in-flight  32  deadlocks 0  escalations 0
+[  6s] committed   37501/s  total   218374  in-flight  32  deadlocks 0  escalations 0
+[  7s] committed   36901/s  total   255275  in-flight  32  deadlocks 0  escalations 0
+[  8s] committed   37135/s  total   292410  in-flight  32  deadlocks 0  escalations 0
+[  9s] committed   36668/s  total   329078  in-flight  32  deadlocks 0  escalations 0
+[ 10s] committed   35158/s  total   364236  in-flight  32  deadlocks 0  escalations 0
+==================================================================
+RESULT optimized+share: 296579 committed in 8.00 s  ->  37052 tx/s  (threads=32)
+  READ     178068  (60.0%)  mean latency 0.414 ms
+  INSERT    29741  (10.0%)  mean latency 0.413 ms
+  SCAN      29515  (10.0%)  mean latency 4.885 ms
+  WRITE     59255  (20.0%)  mean latency 0.434 ms
+  deadlocks retried 0, other retries 0, escalations 0, worst attempts 1
+  shared scans: 36325 SCAN transactions served by 5229 sum() executions
+After:  pages=625 live=86535 dead=8298 upd=218064 hot_upd=209834 autovacuums=0

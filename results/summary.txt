@@ -1,0 +1,52 @@
+== Ablation (8 threads, 10 s, 3 runs)
+baseline              8207 ±  356 tx/s  x1.00  lat ms: read 0.707 ins 0.446 scan 3.05 write 0.994
+base+out              8206 ±  300 tx/s  x1.00  lat ms: read 0.713 ins 0.448 scan 3.06 write 0.986
+base+stmtCache        8045 ±  194 tx/s  x0.98  lat ms: read 0.721 ins 0.464 scan 3.09 write 1.014
+base+batchWrites      8131 ±   77 tx/s  x0.99  lat ms: read 0.770 ins 0.520 scan 3.22 write 0.720
+base+autocommit1      8147 ±  161 tx/s  x0.99  lat ms: read 0.739 ins 0.295 scan 2.99 write 1.036
+base+pipeline        10014 ±  240 tx/s  x1.22  lat ms: read 0.283 ins 0.666 scan 4.19 write 0.680
+base+syncOff          8118 ±   58 tx/s  x0.99  lat ms: read 0.739 ins 0.373 scan 3.12 write 0.941
+base+fillfactor70     7984 ±   69 tx/s  x0.97  lat ms: read 0.728 ins 0.469 scan 3.10 write 1.026
+base+avTune           8020 ±  129 tx/s  x0.98  lat ms: read 0.725 ins 0.468 scan 3.06 write 1.031
+base-gate             8033 ±  142 tx/s  x0.98  lat ms: read 0.748 ins 0.501 scan 3.14 write 0.893
+optimized            10466 ±   91 tx/s  x1.28  lat ms: read 0.320 ins 0.312 scan 4.66 write 0.343
+opt-pipeline          8236 ±  164 tx/s  x1.00  lat ms: read 0.837 ins 0.224 scan 3.15 write 0.651
+opt-syncOn           10044 ±   70 tx/s  x1.22  lat ms: read 0.283 ins 0.669 scan 4.19 write 0.675
+opt-out              10291 ±  154 tx/s  x1.25  lat ms: read 0.338 ins 0.336 scan 4.61 write 0.364
+opt+avTune           10327 ±  261 tx/s  x1.26  lat ms: read 0.331 ins 0.330 scan 4.65 write 0.362
+opt+fillfactor70     10283 ±  192 tx/s  x1.25  lat ms: read 0.339 ins 0.331 scan 4.64 write 0.360
+opt-gate             10214 ±  391 tx/s  x1.24  lat ms: read 0.350 ins 0.341 scan 4.59 write 0.379
+opt+shareScans       16566 ±  189 tx/s  x2.02  lat ms: read 0.115 ins 0.110 scan 3.72 write 0.129
+opt+shareScans4      13770 ±  375 tx/s  x1.68  lat ms: read 0.221 ins 0.217 scan 3.74 write 0.237
+opt+shareScans8      10355 ±  197 tx/s  x1.26  lat ms: read 0.337 ins 0.338 scan 4.59 write 0.363
+
+== Thread sweep (10 s, 3 runs): tx/s
+threads               baseline             optimized       optimized+share
+      1           1879 ±    2          2129 ±   46          2176 ±   27
+      2           3366 ±    4          5115 ±   33          5046 ±   29
+      4           6110 ±    2         10484 ±   36          9040 ±   14
+      6           7897 ±    9         11048 ±  109         13059 ±   25
+      8           8985 ±    5         10548 ±   74         16665 ±   17
+     10           9316 ±   18         11319 ±   13         20079 ±   30
+     12           9085 ±   72         11555 ±   41         23195 ±   18
+     16           8778 ±   98         11501 ±   90         28434 ±   71
+     24           8405 ±   47         11553 ±   45         34229 ±  288
+     32           8302 ±   78         11342 ±  119         36812 ±  203
+     48           8285 ±   38         11478 ±   44         38015 ±   66
+     64           8724 ±   54         11367 ±   34         37935 ±  189
+
+== Same stream of 50,000 transactions (seed 42): time until all committed, 3 runs
+serial-baseline          27.06 s ± 0.15     1848 tx/s  speed-up vs serial-baseline x1.00  deadlocks 0
+serial-optimized         25.36 s ± 1.62     1980 tx/s  speed-up vs serial-baseline x1.07  deadlocks 0
+conc-baseline-t4          8.23 s ± 0.02     6073 tx/s  speed-up vs serial-baseline x3.29  deadlocks 0
+conc-optimized-t4         4.36 s ± 0.02    11466 tx/s  speed-up vs serial-baseline x6.21  deadlocks 0
+conc-opt+share-t4         5.16 s ± 0.00     9683 tx/s  speed-up vs serial-baseline x5.24  deadlocks 0
+conc-baseline-t8          5.68 s ± 0.02     8805 tx/s  speed-up vs serial-baseline x4.77  deadlocks 0
+conc-optimized-t8         3.51 s ± 0.45    14523 tx/s  speed-up vs serial-baseline x7.72  deadlocks 0
+conc-opt+share-t8         2.80 s ± 0.02    17859 tx/s  speed-up vs serial-baseline x9.67  deadlocks 0
+conc-baseline-t16         5.36 s ± 0.03     9331 tx/s  speed-up vs serial-baseline x5.05  deadlocks 0
+conc-optimized-t16        3.46 s ± 0.22    14499 tx/s  speed-up vs serial-baseline x7.81  deadlocks 0
+conc-opt+share-t16        1.68 s ± 0.01    29708 tx/s  speed-up vs serial-baseline x16.08  deadlocks 0
+conc-baseline-t32         5.36 s ± 0.00     9336 tx/s  speed-up vs serial-baseline x5.05  deadlocks 0
+conc-optimized-t32        3.48 s ± 0.24    14453 tx/s  speed-up vs serial-baseline x7.79  deadlocks 0
+conc-opt+share-t32        1.43 s ± 0.00    34976 tx/s  speed-up vs serial-baseline x18.93  deadlocks 0

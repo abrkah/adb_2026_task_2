@@ -1,0 +1,16 @@
+Removing 5033 tuples inserted by a previous run
+Loaded 50000 tuples
+Config: {preset=optimized, threads=8, count=50000, duration=30, warmup=0, seed=42, out=buffered, stmtCache=true, batchWrites=true, autocommitSingle=true, pipeline=true, shareScans=false, scanLanes=2, syncCommit=off, fillfactor=100, avTune=false, gate=true, maxOptimistic=5, setup=true, print=true, label=conc-optimized-t8}
+Before: pages=319 live=50000 dead=0 upd=0 hot_upd=0 autovacuums=0
+[  1s] committed   18912/s  total    18912  in-flight   8  deadlocks 0  escalations 0
+[  2s] committed   20709/s  total    39621  in-flight   8  deadlocks 0  escalations 0
+[  3s] committed   10379/s  total    50000  in-flight   0  deadlocks 0  escalations 0
+==================================================================
+RESULT conc-optimized-t8: 50000 committed in 2.87 s  ->  17427 tx/s  (threads=8)
+  READ      29856  (59.7%)  mean latency 0.165 ms
+  INSERT     5033  (10.1%)  mean latency 0.161 ms
+  SCAN       5073  (10.1%)  mean latency 3.013 ms
+  WRITE     10038  (20.1%)  mean latency 0.189 ms
+  deadlocks retried 0, other retries 0, escalations 0, worst attempts 1
+  all 50000 transactions committed: true
+After:  pages=370 live=55033 dead=2525 upd=30114 hot_upd=27625 autovacuums=0

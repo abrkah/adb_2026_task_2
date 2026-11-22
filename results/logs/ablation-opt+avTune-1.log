@@ -1,0 +1,22 @@
+Removing 11300 tuples inserted by a previous run
+Loaded 50000 tuples with [autovacuum_vacuum_scale_factor = 0, autovacuum_vacuum_threshold = 2000, autovacuum_vacuum_insert_scale_factor = 0, autovacuum_vacuum_insert_threshold = 2000, autovacuum_vacuum_cost_delay = 0]
+Config: {preset=optimized, threads=8, count=0, duration=10, warmup=2, seed=42, out=buffered, stmtCache=true, batchWrites=true, autocommitSingle=true, pipeline=true, shareScans=false, scanLanes=2, syncCommit=off, fillfactor=100, avTune=true, gate=true, maxOptimistic=5, setup=true, print=true, label=opt+avTune}
+Before: pages=319 live=50000 dead=0 upd=0 hot_upd=0 autovacuums=0
+[  1s] committed   17886/s  total    17886  in-flight   8  deadlocks 0  escalations 0
+[  2s] committed   10858/s  total    28744  in-flight   8  deadlocks 0  escalations 0
+[  3s] committed   11313/s  total    40057  in-flight   8  deadlocks 0  escalations 0
+[  4s] committed   11577/s  total    51634  in-flight   8  deadlocks 0  escalations 0
+[  5s] committed   10796/s  total    62430  in-flight   8  deadlocks 0  escalations 0
+[  6s] committed   10108/s  total    72538  in-flight   8  deadlocks 0  escalations 0
+[  7s] committed   10661/s  total    83199  in-flight   8  deadlocks 0  escalations 0
+[  8s] committed   10059/s  total    93258  in-flight   8  deadlocks 0  escalations 0
+[  9s] committed   10227/s  total   103485  in-flight   8  deadlocks 0  escalations 0
+[ 10s] committed   10050/s  total   113535  in-flight   8  deadlocks 0  escalations 0
+==================================================================
+RESULT opt+avTune: 84793 committed in 8.00 s  ->  10596 tx/s  (threads=8)
+  READ      50841  (60.0%)  mean latency 0.305 ms
+  INSERT     8484  (10.0%)  mean latency 0.313 ms
+  SCAN       8579  (10.1%)  mean latency 4.688 ms
+  WRITE     16889  (19.9%)  mean latency 0.332 ms
+  deadlocks retried 0, other retries 0, escalations 0, worst attempts 1
+After:  pages=419 live=61481 dead=1772 upd=67731 hot_upd=63438 autovacuums=1

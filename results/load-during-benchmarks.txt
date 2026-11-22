@@ -1,0 +1,146 @@
+07:43:22 { 3.12 2.41 2.61 } 216.0 /usr/bin/java
+07:43:37 { 4.17 2.68 2.70 }  99.9 /usr/bin/java
+07:43:52 { 5.25 2.99 2.81 }  98.5 /usr/bin/java
+07:44:07 { 5.87 3.24 2.90 }  97.8 /usr/bin/java
+07:44:22 { 5.94 3.37 2.96 }  96.7 /usr/bin/java
+07:44:37 { 6.09 3.53 3.02 } 183.3 /usr/bin/java
+07:44:52 { 6.44 3.73 3.10 }  97.8 /usr/bin/java
+07:45:07 { 6.72 3.93 3.18 }  96.6 /usr/bin/java
+07:45:23 { 6.52 4.01 3.22 } 100.6 /usr/bin/java
+07:45:38 { 6.56 4.14 3.28 }  97.9 /usr/bin/java
+07:45:53 { 6.50 4.25 3.33 } 151.0 /usr/bin/java
+07:46:08 { 7.51 4.58 3.47 }  57.6 postgres: ab deadlock_demo 127.0.0.1(56083) SELECT
+07:46:23 { 6.95 4.60 3.49 }  52.5 postgres: ab deadlock_demo 127.0.0.1(56096) SELECT
+07:46:38 { 8.52 5.07 3.68 } 102.5 /usr/bin/java
+07:46:53 { 9.07 5.36 3.81 }  80.7 /usr/bin/java
+07:47:08 { 11.07 6.01 4.07 }  79.2 /usr/bin/java
+07:47:23 { 10.73 6.20 4.17 }  99.4 /usr/bin/java
+07:47:38 { 10.02 6.27 4.23 }  82.0 /usr/bin/java
+07:47:53 { 9.49 6.32 4.28 } 136.2 /usr/bin/java
+07:48:08 { 9.90 6.57 4.41 }  99.7 /usr/bin/java
+07:48:23 { 9.84 6.70 4.49 }  73.9 /usr/bin/java
+07:48:38 { 9.24 6.72 4.54 }  99.0 /usr/bin/java
+07:48:53 { 9.67 6.93 4.65 }  65.7 postgres: ab deadlock_demo 127.0.0.1(56275) SELECT
+07:49:09 { 9.53 7.03 4.72 } 232.8 /usr/bin/java
+07:49:24 { 9.04 7.06 4.77 }  71.0 /usr/bin/java
+07:49:39 { 9.13 7.18 4.86 }  69.2 /usr/bin/java
+07:49:54 { 9.01 7.25 4.92 }  53.1 postgres: ab deadlock_demo 127.0.0.1(56359) SELECT
+07:50:09 { 9.70 7.50 5.05 }  60.2 postgres: ab deadlock_demo 127.0.0.1(56365) idle
+07:50:24 { 9.99 7.67 5.16 }  87.2 /usr/bin/java
+07:50:39 { 9.22 7.61 5.18 }  55.7 postgres: ab deadlock_demo 127.0.0.1(56417) idle
+07:50:54 { 10.80 8.03 5.37 }  67.0 postgres: ab deadlock_demo 127.0.0.1(56435) SELECT
+07:51:09 { 10.96 8.21 5.48 }  72.7 postgres: ab deadlock_demo 127.0.0.1(56475) SELECT
+07:51:24 { 11.55 8.48 5.62 }  55.8 postgres: ab deadlock_demo 127.0.0.1(56484) SELECT
+07:51:39 { 11.51 8.66 5.75 }  63.5 postgres: ab deadlock_demo 127.0.0.1(56499) idle
+07:51:54 { 11.51 8.80 5.86 }  63.9 postgres: ab deadlock_demo 127.0.0.1(56516) BIND
+07:52:09 { 11.33 8.89 5.94 }  64.5 postgres: ab deadlock_demo 127.0.0.1(56528) SELECT
+07:52:24 { 12.79 9.34 6.15 } 183.3 /usr/bin/java
+07:52:39 { 10.88 9.09 6.12 }  47.6 /usr/bin/java
+07:52:55 { 9.56 8.89 6.10 }  43.3 /usr/bin/java
+07:53:10 { 8.34 8.65 6.06 }  63.7 /usr/bin/java
+07:53:25 { 7.99 8.55 6.07 }  47.8 postgres: ab deadlock_demo 127.0.0.1(56613) idle
+07:53:40 { 9.04 8.75 6.18 }  23.6 /usr/bin/java
+07:53:55 { 10.15 9.01 6.32 }  66.1 postgres: ab deadlock_demo 127.0.0.1(56653) SELECT
+07:54:10 { 9.81 8.99 6.36 }  65.4 postgres: ab deadlock_demo 127.0.0.1(56659) SELECT
+07:54:25 { 9.02 8.87 6.36 }  47.5 postgres: ab deadlock_demo 127.0.0.1(56674) SELECT
+07:54:40 { 7.62 8.57 6.30 }  53.3 postgres: ab deadlock_demo 127.0.0.1(56680) SELECT
+07:54:55 { 6.77 8.33 6.25 }  60.2 postgres: ab deadlock_demo 127.0.0.1(56684) SELECT
+07:55:10 { 6.09 8.10 6.21 }  70.6 postgres: ab deadlock_demo 127.0.0.1(56695) idle
+07:55:25 { 6.10 8.00 6.20 }  64.2 /usr/bin/java
+07:55:40 { 5.66 7.80 6.16 }  74.4 /usr/bin/java
+07:55:55 { 5.61 7.68 6.15 }  89.3 /usr/bin/java
+07:56:10 { 6.71 7.81 6.22 }  69.6 postgres: ab deadlock_demo 127.0.0.1(56736) idle
+07:56:26 { 6.59 7.74 6.22 } 194.1 /usr/bin/java
+07:56:41 { 7.98 7.98 6.33 }  64.3 postgres: ab deadlock_demo 127.0.0.1(56773) SELECT
+07:56:56 { 8.74 8.16 6.43 }  42.9 /usr/bin/java
+07:57:11 { 9.31 8.31 6.51 }  52.8 postgres: ab deadlock_demo 127.0.0.1(56808) SELECT
+07:57:26 { 9.81 8.49 6.61 }  58.1 /usr/bin/java
+07:57:41 { 8.90 8.35 6.59 }  50.9 /usr/bin/java
+07:57:56 { 9.51 8.52 6.68 }  67.5 /usr/bin/java
+07:58:11 { 9.21 8.50 6.70 }  87.2 /usr/bin/java
+07:58:26 { 11.06 8.92 6.88 } 248.2 /usr/bin/java
+07:58:41 { 10.00 8.79 6.87 } 103.8 /usr/bin/java
+07:58:56 { 12.86 9.46 7.14 }  29.1 postgres: ab deadlock_demo 127.0.0.1(56993) SELECT
+07:59:11 { 11.08 9.24 7.10 } 169.1 /usr/bin/java
+07:59:26 { 12.42 9.59 7.27 }  28.9 /usr/bin/java
+07:59:41 { 12.60 9.80 7.38 } 108.6 /usr/bin/java
+07:59:57 { 16.26 10.69 7.74 }  37.3 /usr/bin/java
+08:00:12 { 16.94 11.17 7.96 } 113.8 /usr/bin/java
+08:00:27 { 14.92 10.99 7.96 }  76.5 /usr/bin/java
+08:00:42 { 19.65 12.27 8.47 } 129.8 /usr/bin/java
+08:00:57 { 16.70 12.00 8.44 }  64.1 postgres: ab deadlock_demo 127.0.0.1(57500) idle in transaction
+08:01:12 { 13.22 11.46 8.30 }  23.3 /Applications/Free Download Manager.app/Contents/MacOS/fdm
+08:01:27 { 10.67 10.98 8.19 }  60.1 postgres: ab deadlock_demo 127.0.0.1(57513) idle in transaction
+08:01:42 { 8.89 10.57 8.09 }  69.6 postgres: ab deadlock_demo 127.0.0.1(57520) SELECT
+08:01:57 { 7.43 10.16 7.99 } 245.5 /usr/bin/java
+08:02:12 { 7.03 9.94 7.95 }  84.6 postgres: ab deadlock_demo 127.0.0.1(57541) UPDATE
+08:02:27 { 6.50 9.68 7.89 }  55.8 postgres: ab deadlock_demo 127.0.0.1(57547) idle
+08:02:42 { 6.15 9.45 7.84 }  81.4 postgres: ab deadlock_demo 127.0.0.1(57569) SELECT
+08:02:57 { 6.48 9.38 7.84 }  44.7 /Applications/Visual Studio Code.app/Contents/Frameworks/Code He
+08:03:12 { 6.50 9.24 7.82 }  43.8 /usr/bin/java
+08:03:28 { 7.85 9.41 7.90 }  52.4 /usr/bin/java
+08:03:43 { 7.60 9.27 7.88 } 102.2 /usr/bin/java
+08:03:58 { 8.84 9.46 7.97 } 247.0 /usr/bin/java
+08:04:13 { 7.87 9.21 7.90 } 103.9 /usr/bin/java
+08:04:28 { 9.01 9.38 7.99 }  51.3 postgres: ab deadlock_demo 127.0.0.1(57680) SELECT
+08:04:43 { 7.93 9.12 7.92 } 112.3 /usr/bin/java
+08:04:58 { 8.53 9.18 7.96 }  33.8 /System/Library/CoreServices/NotificationCenter.app/Contents/Mac
+08:05:13 { 8.74 9.21 7.99 }  74.6 /usr/bin/java
+08:05:28 { 8.05 9.04 7.95 }  34.9 /usr/bin/java
+08:05:43 { 10.86 9.63 8.19 } 102.7 /usr/bin/java
+08:05:58 { 10.27 9.57 8.19 }  43.7 /usr/bin/java
+08:06:13 { 13.48 10.33 8.48 } 114.1 /usr/bin/java
+08:06:28 { 11.77 10.10 8.44 }  78.3 /usr/bin/java
+08:06:43 { 20.07 12.02 9.15 } 106.6 /usr/bin/java
+08:06:59 { 21.88 12.76 9.46 } 101.2 /usr/bin/java
+08:07:14 { 22.70 13.32 9.71 }  30.3 /usr/bin/java
+08:07:29 { 22.08 13.69 9.91 }  81.8 /Applications/Visual Studio Code.app/Contents/Frameworks/Code He
+08:07:44 { 17.63 13.11 9.77 }  56.4 postgres: ab deadlock_demo 127.0.0.1(58326) idle
+08:07:59 { 14.18 12.57 9.63 }  74.5 /Applications/Comet.app/Contents/Frameworks/Comet Framework.fram
+08:08:14 { 11.83 12.13 9.53 }  73.5 postgres: ab deadlock_demo 127.0.0.1(58344) idle
+08:08:29 { 9.80 11.67 9.41 }  70.5 postgres: ab deadlock_demo 127.0.0.1(58349) SELECT
+08:08:44 { 8.53 11.29 9.31 }  63.3 /usr/bin/java
+08:08:59 { 7.53 10.93 9.22 }  54.8 postgres: ab deadlock_demo 127.0.0.1(58372) SELECT
+08:09:14 { 6.85 10.61 9.13 }  88.0 /usr/bin/java
+08:09:29 { 6.54 10.35 9.06 } 207.4 /usr/bin/java
+08:09:44 { 7.01 10.27 9.06 } 100.1 /usr/bin/java
+08:09:59 { 6.67 10.03 8.99 }  66.7 postgres: ab deadlock_demo 127.0.0.1(58424) idle
+08:10:15 { 6.81 9.90 8.96 } 124.6 /usr/bin/java
+08:10:30 { 7.26 9.84 8.96 }  58.4 postgres: ab deadlock_demo 127.0.0.1(58459) idle
+08:10:45 { 9.20 10.15 9.08 }  53.3 /usr/bin/java
+08:11:00 { 8.72 10.00 9.05 }  47.2 postgres: ab deadlock_demo 127.0.0.1(58499) SELECT
+08:11:15 { 9.52 10.12 9.11 }  62.7 /usr/bin/java
+08:11:30 { 9.32 10.04 9.09 }  37.7 /usr/bin/java
+08:11:45 { 11.00 10.40 9.24 }  86.9 /usr/bin/java
+08:12:00 { 10.46 10.32 9.23 }  82.7 /usr/bin/java
+08:12:15 { 13.47 10.96 9.48 } 146.5 /usr/bin/java
+08:12:30 { 12.07 10.78 9.44 } 103.0 /usr/bin/java
+08:12:45 { 16.52 11.83 9.84 }  29.5 /usr/bin/java
+08:13:00 { 14.69 11.65 9.82 } 116.7 /usr/bin/java
+08:13:15 { 24.70 14.02 10.69 }  29.7 /usr/bin/java
+08:13:31 { 20.54 13.61 10.60 } 111.0 /usr/bin/java
+08:13:46 { 23.05 14.46 10.96 }  47.5 /usr/bin/java
+08:14:01 { 24.86 15.34 11.33 } 112.5 /usr/bin/java
+08:14:16 { 20.02 14.73 11.19 }  60.9 postgres: ab deadlock_demo 127.0.0.1(59140) idle in transaction
+08:14:31 { 15.88 14.07 11.01 }  65.4 postgres: ab deadlock_demo 127.0.0.1(59140) SELECT
+08:14:46 { 13.44 13.63 10.91 }  63.6 postgres: ab deadlock_demo 127.0.0.1(59148) idle
+08:15:01 { 10.75 13.03 10.74 }  62.4 postgres: ab deadlock_demo 127.0.0.1(59148) idle in transaction
+08:15:16 { 8.87 12.50 10.59 }  65.5 postgres: ab deadlock_demo 127.0.0.1(59153) idle in transaction
+08:15:31 { 7.52 12.02 10.45 }  54.1 postgres: ab deadlock_demo 127.0.0.1(59159) SELECT
+08:15:46 { 6.39 11.54 10.31 }  57.4 postgres: ab deadlock_demo 127.0.0.1(59159) idle
+08:16:01 { 5.51 11.09 10.17 }  55.0 postgres: ab deadlock_demo 127.0.0.1(59190) SELECT
+08:16:16 { 4.88 10.68 10.04 }  55.9 postgres: ab deadlock_demo 127.0.0.1(59190) idle
+08:16:31 { 4.32 10.27 9.90 }  55.3 postgres: ab deadlock_demo 127.0.0.1(59195) idle
+08:16:46 { 3.96 9.90 9.77 }  56.9 postgres: ab deadlock_demo 127.0.0.1(59195) SELECT
+08:17:02 { 4.19 9.66 9.69 }  66.0 /usr/bin/java
+08:17:17 { 4.29 9.41 9.60 }  55.8 /usr/bin/java
+08:17:32 { 4.45 9.20 9.52 }  85.3 postgres: ab deadlock_demo 127.0.0.1(59255) idle
+08:17:47 { 4.79 9.04 9.46 }  55.3 postgres: ab deadlock_demo 127.0.0.1(59277) idle
+08:18:02 { 5.24 8.92 9.41 } 100.2 /usr/bin/java
+08:18:17 { 5.55 8.81 9.36 }  59.9 postgres: ab deadlock_demo 127.0.0.1(59342) idle
+08:18:32 { 6.99 8.99 9.42 }  91.1 /usr/bin/java
+08:18:47 { 7.75 9.07 9.44 } 103.6 /usr/bin/java
+08:19:02 { 10.39 9.56 9.60 }  32.8 postgres: ab deadlock_demo 127.0.0.1(59476) idle
+08:19:17 { 10.69 9.69 9.65 } 136.7 /usr/bin/java
+08:19:32 { 10.10 9.61 9.62 } 103.7 /usr/bin/java
+08:19:47 { 16.19 10.97 10.10 }  28.5 /usr/bin/java

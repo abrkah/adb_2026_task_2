@@ -1,0 +1,138 @@
+19:17:44 { 4.89 4.15 3.99 }  99.9 /usr/bin/java
+19:17:59 { 6.15 4.46 4.10 } 103.1 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:18:14 { 6.80 4.67 4.18 } 140.7 /usr/bin/java
+19:18:29 { 9.74 5.44 4.46 } 309.7 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:18:44 { 10.87 5.92 4.65 }  94.8 /usr/bin/java
+19:18:59 { 10.99 6.21 4.78 } 122.1 /usr/bin/java
+19:19:14 { 10.62 6.36 4.86 }  94.9 /usr/bin/java
+19:19:29 { 10.18 6.47 4.92 }  93.3 /Applications/Comet.app/Contents/MacOS/Comet
+19:19:44 { 10.57 6.73 5.04 }  94.2 /usr/bin/java
+19:19:59 { 9.98 6.79 5.09 }  92.4 /usr/bin/java
+19:20:14 { 10.22 7.00 5.20 } 184.3 /usr/bin/java
+19:20:29 { 10.86 7.29 5.33 }  63.3 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:20:45 { 11.83 7.68 5.51 }  52.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:21:00 { 12.13 7.96 5.64 }  95.4 /usr/bin/java
+19:21:15 { 11.51 8.01 5.70 }  96.4 /usr/bin/java
+19:21:30 { 11.77 8.25 5.83 } 160.3 /usr/bin/java
+19:21:45 { 12.66 8.62 6.00 }  87.3 /usr/bin/java
+19:22:00 { 12.38 8.76 6.10 } 111.1 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:22:15 { 12.85 9.05 6.25 } 101.2 /usr/bin/java
+19:22:30 { 12.69 9.19 6.35 }  85.2 /usr/bin/java
+19:22:45 { 12.61 9.35 6.45 }  77.8 /Applications/Google Chrome.app/Contents/Frameworks/Go
+19:23:00 { 16.47 10.37 6.87 }  89.9 /usr/bin/java
+19:23:15 { 16.20 10.60 7.01 } 102.8 /Applications/Comet.app/Contents/Frameworks/Comet Fram
+19:23:30 { 15.62 10.74 7.12 }  54.7 postgres: ab deadlock_demo 127.0.0.1(65233) idle
+19:23:45 { 16.27 11.11 7.31 }  78.2 /usr/bin/java
+19:24:00 { 16.46 11.42 7.49 } 187.3 /Applications/Comet.app/Contents/Frameworks/Comet Fram
+19:24:15 { 14.05 11.14 7.46 }  57.8 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:24:31 { 13.51 11.17 7.53 }  49.0 postgres: ab deadlock_demo 127.0.0.1(65382) SELECT
+19:24:46 { 12.78 11.12 7.58 }  69.1 /usr/bin/java
+19:25:01 { 12.73 11.18 7.66 }  50.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:25:16 { 12.72 11.26 7.75 }  77.8 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:25:31 { 12.28 11.24 7.81 }  52.0 postgres: ab deadlock_demo 127.0.0.1(49176) SELECT
+19:25:46 { 13.82 11.62 8.00 }  53.2 postgres: ab deadlock_demo 127.0.0.1(49202) SELECT
+19:26:01 { 12.82 11.51 8.02 } 107.1 /usr/bin/java
+19:26:16 { 13.36 11.69 8.15 }  51.4 postgres: ab deadlock_demo 127.0.0.1(49283) idle
+19:26:31 { 13.45 11.79 8.25 } 176.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:26:46 { 13.01 11.77 8.30 }  50.1 postgres: ab deadlock_demo 127.0.0.1(49378) idle
+19:27:01 { 13.50 11.94 8.42 }  56.4 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:27:16 { 14.03 12.15 8.56 } 165.7 /usr/bin/java
+19:27:31 { 12.76 11.96 8.55 }  61.1 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:27:46 { 11.71 11.77 8.54 }  76.8 /Applications/Visual Studio Code.app/Contents/Framewor
+19:28:01 { 10.32 11.45 8.49 }  70.2 postgres: ab deadlock_demo 127.0.0.1(49588) SELECT
+19:28:16 { 10.80 11.50 8.55 }  58.8 postgres: ab deadlock_demo 127.0.0.1(49613) idle
+19:28:31 { 10.62 11.42 8.58 } 105.9 /usr/bin/javac
+19:28:47 { 9.33 11.11 8.52 }  57.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:29:02 { 7.71 10.66 8.40 }  58.3 postgres: ab deadlock_demo 127.0.0.1(49710) SELECT
+19:29:17 { 6.99 10.35 8.33 }  89.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:29:32 { 7.14 10.22 8.32 }  70.5 postgres: ab deadlock_demo 127.0.0.1(49776) SELECT
+19:29:47 { 6.45 9.91 8.24 }  78.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:30:02 { 6.28 9.71 8.19 }  82.6 postgres: ab deadlock_demo 127.0.0.1(49852) SELECT
+19:30:17 { 6.40 9.57 8.17 }  86.0 /usr/bin/java
+19:30:32 { 7.15 9.58 8.20 } 153.0 /usr/bin/java
+19:30:47 { 7.46 9.49 8.20 }  97.2 /usr/bin/java
+19:31:02 { 8.11 9.52 8.23 }  68.4 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:31:17 { 7.77 9.38 8.20 } 102.8 /usr/bin/java
+19:31:32 { 9.09 9.57 8.29 }  73.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:31:47 { 9.45 9.63 8.33 } 186.2 /usr/bin/java
+19:32:02 { 11.41 10.01 8.49 }  54.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:32:17 { 13.39 10.52 8.70 }  49.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:32:32 { 13.48 10.66 8.78 }  57.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:32:47 { 13.59 10.84 8.87 }  54.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:33:03 { 11.96 10.60 8.82 }  77.6 /usr/bin/java
+19:33:18 { 11.60 10.59 8.85 } 171.7 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:33:33 { 12.71 10.90 8.99 } 126.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:33:48 { 14.95 11.51 9.24 } 160.9 /usr/bin/java
+19:34:03 { 16.21 11.96 9.44 } 103.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:34:18 { 21.44 13.28 9.95 }  93.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:34:33 { 26.71 14.86 10.58 } 184.1 /usr/bin/java
+19:34:48 { 34.27 17.10 11.45 } 104.3 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:35:03 { 34.04 17.96 11.86 } 103.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:35:18 { 27.47 17.30 11.73 }  94.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:35:33 { 23.15 16.84 11.66 }  92.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:35:48 { 19.07 16.24 11.54 }  91.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:36:03 { 16.32 15.77 11.45 } 101.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:36:18 { 14.46 15.39 11.39 }  96.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:36:33 { 12.42 14.90 11.29 }  99.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:36:48 { 12.34 14.76 11.30 }  95.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:37:04 { 12.13 14.59 11.30 }  92.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:37:19 { 10.61 14.13 11.19 }  96.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:37:34 { 9.65 13.75 11.11 }  90.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:37:49 { 9.21 13.45 11.05 } 168.3 /usr/bin/java
+19:38:04 { 8.82 13.17 10.99 }  93.8 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:38:19 { 9.78 13.18 11.03 }  99.4 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:38:34 { 10.27 13.11 11.04 }  99.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:38:49 { 9.98 12.91 11.01 }  99.3 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:39:04 { 11.14 13.01 11.08 }  98.8 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:39:19 { 12.49 13.22 11.18 }  99.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:39:34 { 11.84 13.05 11.16 } 102.8 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:39:49 { 13.51 13.34 11.29 } 181.0 /usr/bin/java
+19:40:04 { 13.77 13.41 11.35 } 107.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:40:19 { 16.72 14.05 11.61 }  95.3 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:40:34 { 16.78 14.22 11.72 } 112.3 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:40:50 { 19.22 14.85 11.98 }  97.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:41:05 { 23.77 16.09 12.48 }  99.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:41:20 { 24.54 16.69 12.76 }  97.7 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:41:35 { 33.15 19.00 13.65 } 100.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:41:50 { 29.34 18.88 13.70 }  92.5 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:42:05 { 24.41 18.30 13.59 }  93.7 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:42:20 { 19.68 17.55 13.40 }  95.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:42:35 { 16.22 16.89 13.24 }  97.8 /usr/bin/java
+19:42:50 { 14.10 16.39 13.12 }  95.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:43:05 { 12.46 15.91 13.01 }  88.7 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:43:20 { 11.76 15.59 12.94 } 215.6 /usr/bin/java
+19:43:35 { 11.63 15.38 12.91 }  91.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:43:50 { 10.49 14.93 12.80 }  87.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:44:05 { 9.54 14.50 12.68 }  85.8 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:44:20 { 9.97 14.34 12.65 }  89.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:44:36 { 9.73 14.07 12.58 } 134.3 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:44:51 { 10.23 13.96 12.57 }  91.4 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:45:06 { 9.81 13.69 12.50 } 151.1 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:45:21 { 10.49 13.64 12.50 }  86.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:45:36 { 12.33 13.87 12.60 } 133.1 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:45:51 { 12.71 13.88 12.63 }  92.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:46:06 { 13.52 14.01 12.70 } 195.5 /usr/bin/java
+19:46:21 { 15.66 14.47 12.88 }  93.1 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:46:36 { 15.11 14.42 12.89 } 114.4 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:46:51 { 12.74 13.93 12.74 } 100.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:47:06 { 14.05 14.16 12.85 } 110.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:47:21 { 12.17 13.74 12.72 } 109.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:47:36 { 16.78 14.63 13.05 } 171.8 /usr/bin/java
+19:47:51 { 18.41 15.07 13.23 } 112.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:48:06 { 20.15 15.55 13.43 } 104.4 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:48:22 { 22.04 16.24 13.72 } 102.1 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:48:37 { 17.54 15.53 13.51 } 119.0 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:48:52 { 15.39 15.16 13.41 } 102.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:49:07 { 12.96 14.63 13.25 }  93.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:49:22 { 11.37 14.19 13.12 } 104.4 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:49:37 { 9.98 13.74 12.98 }  92.8 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:49:52 { 9.54 13.46 12.89 } 105.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:50:07 { 8.82 13.11 12.77 } 109.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:50:22 { 8.02 12.72 12.64 } 103.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:50:37 { 6.90 12.25 12.47 }  99.3 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:50:52 { 8.62 12.35 12.51 } 105.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:51:07 { 8.83 12.16 12.43 } 113.2 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:51:22 { 8.18 11.86 12.32 } 118.9 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:51:37 { 10.22 12.12 12.40 }  92.6 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:51:52 { 9.60 11.90 12.32 }  95.7 /Users/apple/Library/Android/sdk/emulator/qemu/darwin-
+19:52:08 { 11.54 12.18 12.41 } 144.1 /usr/bin/java
